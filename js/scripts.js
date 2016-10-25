@@ -2,13 +2,23 @@ var countTo;
 var countBy;
 
 function counter(countTo, countBy) {
-  console.log("Counter Test");
-
   for(i=countBy; i<=countTo; i+=countBy) {
-    console.log(i);
     $("ul").append("<li>" + i + "</li>");
   };
+};
 
+function inputValidation(countTo, countBy) {
+  if ($.isNumeric(countTo) === false || $.isNumeric(countBy) === false) {
+    alert("Please enter a valid number");
+    return false;
+  } else if (countTo <= 0 || countBy <= 0) {
+    alert("Please enter a non-negative number");
+    return false;
+  } else if (countBy > countTo) {
+    alert("Please enter a count number that is smaller than the number you wish to count to.");
+    return false;
+  }
+  return true;
 };
 
 
@@ -23,16 +33,11 @@ $(function() {
 
   $("form").submit(function(event) {
     event.preventDefault();
-    console.log("Submit test");
     $("ul").empty();
-
     countTo = parseInt($("#count-to").val());
     countBy = parseInt($("#count-by").val());
-    console.log(countTo+","+ countBy)
-
-    counter(countTo, countBy);
+    if (inputValidation(countTo, countBy) === true) {
+          counter(countTo, countBy);
+    };
   });
-
-
-
 });
