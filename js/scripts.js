@@ -2,7 +2,7 @@ var countTo;
 var countBy;
 
 function counter(countTo, countBy) {
-  for(i=countBy; i<=countTo; i+=countBy) {
+  for(var i=countBy; i<=countTo; i+=countBy) {
     $("ul").append("<li>" + i + "</li>");
   };
 };
